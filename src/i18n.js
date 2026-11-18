@@ -1,4 +1,6 @@
-// Site language, EN or BM ('ms'), remembered across visits. Each page's
+// Site language, EN or BM ('ms'), remembered for the visit only
+// (sessionStorage): it carries across pages and reloads, and a new visit
+// opens in the default language again. Each page's
 // <head> script sets <html lang> from it before paint. Text in both
 // languages is a { en, ms } pair; where the BM is still to come, English
 // shows.
@@ -16,7 +18,7 @@ export const translationEnabled = true
 
 const stored = () => {
   try {
-    return localStorage.getItem(STORAGE_KEY)
+    return sessionStorage.getItem(STORAGE_KEY)
   } catch {
     return null
   }
@@ -39,7 +41,7 @@ export const setLang = (next) => {
   if (!translationEnabled || next === lang || !languages.includes(next)) return
   lang = next
   try {
-    localStorage.setItem(STORAGE_KEY, next)
+    sessionStorage.setItem(STORAGE_KEY, next)
   } catch {}
   document.documentElement.lang = next
   document.dispatchEvent(new Event('langchange'))

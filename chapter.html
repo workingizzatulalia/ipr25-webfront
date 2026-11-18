@@ -9,7 +9,7 @@
   <script>
     try {
       // The BM preview build (mode "bm") opens in BM and keeps its own choice.
-      const lang = '%MODE%' === 'bm' ? localStorage.getItem('ipr25-lang-preview') || 'ms' : localStorage.getItem('ipr25-lang')
+      const lang = '%MODE%' === 'bm' ? sessionStorage.getItem('ipr25-lang-preview') || 'ms' : sessionStorage.getItem('ipr25-lang')
       if (lang === 'ms') document.documentElement.classList.add('i18n-pending')
     } catch {}
   </script>
