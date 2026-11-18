@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:bm": "vite --mode bm",
     "build": "vite build",
+    "build:bm": "vite build --mode bm --outDir dist/bm",
     "preview": "vite preview"
   },
   "devDependencies": {

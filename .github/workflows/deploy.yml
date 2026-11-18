@@ -35,6 +35,10 @@ jobs:
       - name: Build
         run: npm run build
 
+      # The BM preview: the same site with the language toggle on, at /bm/.
+      - name: Build BM preview
+        run: npm run build:bm
+
       # Enable Pages with GitHub Actions as its source in Settings > Pages.
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

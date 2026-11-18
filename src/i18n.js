@@ -2,12 +2,16 @@
 // <head> script sets <html lang> from it before paint. Text in both
 // languages is a { en, ms } pair; where the BM is still to come, English
 // shows.
-const STORAGE_KEY = 'ipr25-lang'
+// The BM preview build (`npm run build:bm`, published at /bm/) has the
+// toggle on, opens in BM and keeps its own stored choice. The main site has
+// it off until the BM is approved: the toggle still animates (main.js), but
+// the site stays in English and a stored BM choice is ignored.
+const preview = import.meta.env.MODE === 'bm'
+const STORAGE_KEY = preview ? 'ipr25-lang-preview' : 'ipr25-lang'
 const languages = ['en', 'ms']
+const defaultLang = preview ? 'ms' : 'en'
 
-// Off for now: the toggle still animates (main.js), but the site stays in
-// English and a stored BM choice is ignored.
-export const translationEnabled = false
+export const translationEnabled = preview
 
 const stored = () => {
   try {
@@ -17,7 +21,7 @@ const stored = () => {
   }
 }
 
-export let lang = translationEnabled && languages.includes(stored()) ? stored() : 'en'
+export let lang = translationEnabled && languages.includes(stored()) ? stored() : defaultLang
 document.documentElement.lang = lang
 
 export const t = (text) => (text?.constructor === Object ? text[lang] ?? text.en : text)

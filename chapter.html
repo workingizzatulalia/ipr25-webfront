@@ -8,7 +8,9 @@
   <!-- BM: hidden until main.js has swapped the page text in. -->
   <script>
     try {
-      if (localStorage.getItem('ipr25-lang') === 'ms') document.documentElement.classList.add('i18n-pending')
+      // The BM preview build (mode "bm") opens in BM and keeps its own choice.
+      const lang = '%MODE%' === 'bm' ? localStorage.getItem('ipr25-lang-preview') || 'ms' : localStorage.getItem('ipr25-lang')
+      if (lang === 'ms') document.documentElement.classList.add('i18n-pending')
     } catch {}
   </script>
   <title>Chapter | ipr25-testing</title>
