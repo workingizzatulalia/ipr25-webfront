@@ -2,16 +2,17 @@
 // <head> script sets <html lang> from it before paint. Text in both
 // languages is a { en, ms } pair; where the BM is still to come, English
 // shows.
-// The BM preview build (`npm run build:bm`, published at /bm/) has the
-// toggle on, opens in BM and keeps its own stored choice. The main site has
-// it off until the BM is approved: the toggle still animates (main.js), but
-// the site stays in English and a stored BM choice is ignored.
+// The BM/EN toggle works on both builds. The main site opens in English; the
+// BM preview build (`npm run build:bm`, published at /bm/) opens in BM and
+// keeps its own stored choice. Set translationEnabled to false to turn the
+// toggle off again: it then only animates (main.js) and the site stays in
+// English.
 const preview = import.meta.env.MODE === 'bm'
 const STORAGE_KEY = preview ? 'ipr25-lang-preview' : 'ipr25-lang'
 const languages = ['en', 'ms']
 const defaultLang = preview ? 'ms' : 'en'
 
-export const translationEnabled = preview
+export const translationEnabled = true
 
 const stored = () => {
   try {
